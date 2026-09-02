@@ -1,0 +1,68 @@
+import { StatisticalRole } from "@/types";
+
+export const mockRoles: StatisticalRole[] = [
+  {
+    id: "role-jso",
+    code: "JSO-SSS",
+    name: "Junior Statistical Officer (JSO)",
+    cadre: "Subordinate Statistical Service (SSS)",
+    description: "Responsible for field data collection, preliminary validation of survey schedules, supervision of primary investigators, and basic compilation of official series.",
+    requiredCompetencies: [
+      { competencyId: "comp-stat-methods", requiredLevel: 2, priority: "essential" },
+      { competencyId: "comp-survey-method", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-data-mgmt", requiredLevel: 2, priority: "essential" },
+      { competencyId: "comp-stat-comp", requiredLevel: 2, priority: "desirable" },
+      { competencyId: "comp-data-vis", requiredLevel: 1, priority: "desirable" },
+      { competencyId: "comp-official-std", requiredLevel: 2, priority: "essential" },
+      { competencyId: "comp-policy-comm", requiredLevel: 1, priority: "desirable" },
+    ],
+  },
+  {
+    id: "role-sso",
+    code: "SSO-SSS",
+    name: "Senior Statistical Officer (SSO)",
+    cadre: "Subordinate Statistical Service (SSS)",
+    description: "Leads field inspection teams, coordinates regional data scrutiny, executes intermediate data transformations, and assists in drafting survey reports.",
+    requiredCompetencies: [
+      { competencyId: "comp-stat-methods", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-survey-method", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-data-mgmt", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-stat-comp", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-data-vis", requiredLevel: 2, priority: "desirable" },
+      { competencyId: "comp-official-std", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-policy-comm", requiredLevel: 2, priority: "desirable" },
+    ],
+  },
+  {
+    id: "role-asst-dir",
+    code: "AD-ISS",
+    name: "Assistant Director / Data Analytics Lead",
+    cadre: "Indian Statistical Service (ISS) Group 'A'",
+    description: "Heads data analysis units, develops computational pipelines, models econometric forecasts, coordinates national indicator tracking, and drafts parliamentary documentation.",
+    requiredCompetencies: [
+      { competencyId: "comp-stat-methods", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-survey-method", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-data-mgmt", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-stat-comp", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-data-vis", requiredLevel: 3, priority: "essential" },
+      { competencyId: "comp-official-std", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-policy-comm", requiredLevel: 3, priority: "essential" },
+    ],
+  },
+  {
+    id: "role-director",
+    code: "DIR-ISS",
+    name: "Director / Joint Director (Statistical Divisions)",
+    cadre: "Indian Statistical Service (ISS) Group 'A'",
+    description: "Guides division-level strategy for National Accounts, Economic Statistics, Price Statistics, or Sustainable Development Goals, delivering executive advisory to ministries.",
+    requiredCompetencies: [
+      { competencyId: "comp-stat-methods", requiredLevel: 5, priority: "essential" },
+      { competencyId: "comp-survey-method", requiredLevel: 5, priority: "essential" },
+      { competencyId: "comp-data-mgmt", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-stat-comp", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-data-vis", requiredLevel: 4, priority: "essential" },
+      { competencyId: "comp-official-std", requiredLevel: 5, priority: "essential" },
+      { competencyId: "comp-policy-comm", requiredLevel: 5, priority: "essential" },
+    ],
+  },
+];
