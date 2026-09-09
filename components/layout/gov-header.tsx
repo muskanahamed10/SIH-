@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./language-switcher";
 import { NotificationDropdown } from "./notification-dropdown";
@@ -42,23 +43,23 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
 
       {/* Main navigation header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
           {(isLearner || isAdmin) && onToggleSidebar && (
             <button
               type="button"
               onClick={onToggleSidebar}
-              className="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-800"
+              className="lg:hidden p-1.5 sm:p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-800 shrink-0"
               aria-label={navT("toggleSidebar")}
             >
               <Menu className="w-5 h-5" />
             </button>
           )}
 
-          {/* Compact Top-Left Official Brand Block */}
+          {/* MoSPI Official Brand Block (Preserved Position) */}
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-2.5 group focus-visible:ring-2 focus-visible:ring-blue-800 rounded-lg py-1 px-1 transition"
-            aria-label="MoSPI - India's Official Statistical System - iGOT Karmayogi Companion"
+            className="flex items-center gap-2 sm:gap-2.5 group focus-visible:ring-2 focus-visible:ring-blue-800 rounded-lg py-1 px-0.5 sm:px-1 transition shrink-0"
+            aria-label="MoSPI - India's Official Statistical System"
           >
             {/* MoSPI Emblem / Badge */}
             <div className="h-10 w-10 rounded-lg bg-[#0B2545] flex flex-col items-center justify-center text-amber-400 font-black shadow-xs border border-blue-950 shrink-0">
@@ -67,19 +68,35 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
 
             {/* Platform Identity & Tagline */}
             <div className="flex flex-col justify-center min-w-0">
-              <div className="flex flex-wrap items-center gap-1.5 leading-tight">
-                <span className="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight group-hover:text-blue-900 transition">
+              <div className="flex items-center gap-1.5 leading-tight">
+                <span className="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight group-hover:text-blue-900 transition whitespace-nowrap">
                   {t("appTitle")}
                 </span>
-                <span className="inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-900 border border-amber-300 shrink-0">
-                  {t("companionBadge")}
-                </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate mt-0.5">
+              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate mt-0.5 max-w-[140px] sm:max-w-[220px]">
                 {t("appSubtitle")}
               </p>
             </div>
           </Link>
+
+          {/* Official Partner Divider */}
+          <div className="hidden min-[420px]:block h-8 w-px bg-slate-200 shrink-0 mx-0.5 lg:mx-1" aria-hidden="true" />
+
+          {/* Official iGOT Karmayogi Partner Logo */}
+          <div
+            className="hidden min-[420px]:flex items-center gap-1.5 py-1 px-1 transition shrink-0"
+            title="iGOT Karmayogi - National Programme for Civil Services Capacity Building"
+            aria-label="iGOT Karmayogi Partner Platform"
+          >
+            <Image
+              src="/assets/images/igot-karmayogi-logo.svg"
+              alt="iGOT Karmayogi Logo"
+              width={140}
+              height={35}
+              priority
+              className="h-8 sm:h-9 w-auto max-w-[100px] sm:max-w-[135px] lg:max-w-[145px] object-contain shrink-0"
+            />
+          </div>
         </div>
 
         {/* Primary Karmayogi Learner Navigation Tabs (Desktop/Tablet) */}

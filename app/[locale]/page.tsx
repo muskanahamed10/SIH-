@@ -21,7 +21,7 @@ export default async function HomePage({
 
       <main className="flex-1">
         {/* Karmayogi Module Welcome Hero */}
-        <section className="bg-gradient-to-b from-[#0B2545] to-[#134074] text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-blue-900">
+        <section className="bg-gradient-to-b from-[#0B2545] to-[#134074] text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-blue-900 min-h-[280px] sm:min-h-[310px] flex flex-col justify-center">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/60 border border-blue-400/30 text-amber-300 text-xs font-semibold tracking-wide">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -54,8 +54,8 @@ export default async function HomePage({
         </section>
 
         {/* Subtle Entry Point: Build Your Competency Profile */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 -mt-12">
-          <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-[#0B2545] rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-blue-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-10">
+          <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-[#0B2545] rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-blue-700/60 flex flex-col md:flex-row items-center justify-between gap-6 min-h-[140px]">
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/30">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -81,7 +81,7 @@ export default async function HomePage({
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Learner Card */}
-            <Card className="shadow-md hover:shadow-xl transition-all border-slate-200 bg-white">
+            <Card className="shadow-md hover:shadow-xl transition-shadow duration-200 border-slate-200 bg-white">
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
                   <Badge variant="gov" className="gap-1">
@@ -135,7 +135,7 @@ export default async function HomePage({
             </Card>
 
             {/* Admin Card */}
-            <Card className="shadow-md hover:shadow-xl transition-all border-slate-200 bg-white">
+            <Card className="shadow-md hover:shadow-xl transition-shadow duration-200 border-slate-200 bg-white">
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
                   <Badge variant="warning" className="gap-1">
