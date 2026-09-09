@@ -1,16 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useResources, useCompetencies } from "@/hooks/use-queries";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ExternalLink, Clock } from "lucide-react";
+import { Search, Clock, ArrowRight } from "lucide-react";
 
 export default function ResourcesBrowserPage() {
   const t = useTranslations("common");
+  const locale = useLocale();
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectedComp, setSelectedComp] = React.useState("all");
 
@@ -97,10 +99,12 @@ export default function ResourcesBrowserPage() {
                 </div>
               </CardContent>
               <CardFooter className="pt-2 border-t border-slate-100">
-                <Button size="sm" className="w-full bg-[#0B2545] hover:bg-[#134074] text-white text-xs gap-1.5">
-                  <span>Access on iGOT</span>
-                  <ExternalLink className="w-3 h-3" />
-                </Button>
+                <Link href={`/${locale}/learner/resources/${res.id}`} className="w-full">
+                  <Button size="sm" className="w-full bg-[#0B2545] hover:bg-[#134074] text-white text-xs gap-1.5">
+                    <span>View Details & Access</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}

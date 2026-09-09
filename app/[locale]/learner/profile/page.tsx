@@ -1,14 +1,16 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useLearnerProfile, useRoles } from "@/hooks/use-queries";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, CheckCircle2 } from "lucide-react";
+import { Target, CheckCircle2, ArrowLeft } from "lucide-react";
 
 export default function LearnerProfilePage() {
   const t = useTranslations("common");
+  const locale = useLocale();
   const { data: profile, isLoading } = useLearnerProfile();
   const { data: roles } = useRoles();
 
@@ -20,13 +22,21 @@ export default function LearnerProfilePage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-          Statistical Cadre Profile
-        </h1>
-        <p className="text-sm text-slate-500 mt-1">
-          Review your official cadre credentials and configure your target role for personalized competency diagnostics.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+            Statistical Cadre Profile
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Review your official cadre credentials and configure your target role for personalized competency diagnostics.
+          </p>
+        </div>
+        <Link href={`/${locale}/learner`}>
+          <Button variant="outline" size="sm" className="text-xs font-semibold self-start sm:self-auto border-slate-300 gap-1.5">
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Back to Dashboard</span>
+          </Button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

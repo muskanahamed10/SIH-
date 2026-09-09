@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { useLocale } from "next-intl";
 import { useCompetencies } from "@/hooks/use-queries";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Brain } from "lucide-react";
 
 export default function PracticeQuizzesPage() {
+  const locale = useLocale();
   const { data: competencies } = useCompetencies();
 
   return (
@@ -38,10 +41,12 @@ export default function PracticeQuizzesPage() {
               </CardDescription>
             </CardHeader>
             <CardFooter className="pt-2 border-t border-slate-100">
-              <Button size="sm" variant="outline" className="w-full text-xs font-semibold hover:bg-blue-50 hover:text-blue-900 gap-1.5">
-                <Brain className="w-3.5 h-3.5 text-blue-700" />
-                <span>Start Practice Quiz</span>
-              </Button>
+              <Link href={`/${locale}/learner/practice/${comp.id}`} className="w-full">
+                <Button size="sm" variant="outline" className="w-full text-xs font-semibold hover:bg-blue-50 hover:text-blue-900 gap-1.5">
+                  <Brain className="w-3.5 h-3.5 text-blue-700" />
+                  <span>Start Practice Quiz</span>
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}

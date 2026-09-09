@@ -1,104 +1,118 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import * as React from "react";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useLearningPath } from "@/hooks/use-queries";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useLearningPathStore } from "@/stores/learning-path-store";
+import { LearningPathHeader } from "@/components/learner/learning-path/learning-path-header";
+import { JourneyRoadmap } from "@/components/learner/learning-path/journey-roadmap";
+import { LearningPathSummary } from "@/components/learner/learning-path/learning-path-summary";
+import { CadreCompetencyTracker } from "@/components/learner/learning-path/cadre-competency-tracker";
+import { WhyOrderInsight } from "@/components/learner/learning-path/why-order-insight";
+import { LearningTimeline } from "@/components/learner/learning-path/learning-timeline";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Clock, PlayCircle } from "lucide-react";
+import { AlertCircle, ArrowLeft, BookOpen, RotateCcw } from "lucide-react";
 
 export default function LearningPathPage() {
-  const t = useTranslations("learning");
-  const commonT = useTranslations("common");
-  const { data: path, isLoading } = useLearningPath();
+  const locale = useLocale();
+  const t = useTranslations("personalizedLearningPath");
+  const { data, isLoading, isError, refetch } = useLearningPath();
+  const { items: storeItems, overallProgress: storeProgress, initPath } = useLearningPathStore();
+
+  // Sync server items with local Zustand store on load
+  React.useEffect(() => {
+    if (data?.items) {
+      initPath(data.items);
+    }
+  }, [data, initPath]);
 
   if (isLoading) {
-    return <div className="p-8 text-center text-sm text-slate-500">{commonT("loading")}</div>;
+    return (
+      <div className="max-w-4xl mx-auto p-12 text-center text-sm text-slate-500 animate-pulse space-y-4">
+        <div className="h-28 bg-slate-100 rounded-2xl max-w-xl mx-auto" />
+        <p>{t("loadingMessage")}</p>
+      </div>
+    );
   }
 
-  return (
-    <div className="space-y-6">
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{t("title")}</h1>
-            <p className="text-xs text-slate-500 mt-1">
-              {t("subtitle")} for <strong>{path?.targetRoleName}</strong>
-            </p>
-          </div>
-          <Badge variant="gov">Pathway Active</Badge>
+  if (isError || !data) {
+    return (
+      <div className="max-w-md mx-auto p-8 text-center bg-white border border-slate-200 rounded-2xl shadow-xs space-y-4 my-12">
+        <div className="h-12 w-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto">
+          <AlertCircle className="w-6 h-6" />
         </div>
-
-        <div className="space-y-1.5 pt-2">
-          <div className="flex justify-between text-xs text-slate-600">
-            <span>Overall Path Completion</span>
-            <span className="font-bold text-slate-900">{path?.overallProgress}%</span>
-          </div>
-          <Progress value={path?.overallProgress || 0} />
+        <div className="space-y-1">
+          <h2 className="text-base font-bold text-slate-900">{t("errorTitle")}</h2>
+          <p className="text-xs text-slate-500">{t("errorMessage")}</p>
+        </div>
+        <div className="flex items-center justify-center gap-3 pt-2">
+          <Button onClick={() => refetch()} className="bg-[#0B2545] hover:bg-[#134074] text-white text-xs font-semibold">
+            <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
+            <span>{t("tryAgain")}</span>
+          </Button>
+          <Link href={`/${locale}/learner/competency`}>
+            <Button variant="outline" className="text-xs font-semibold border-slate-300">
+              <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />
+              <span>{t("backToCompetency")}</span>
+            </Button>
+          </Link>
         </div>
       </div>
+    );
+  }
 
-      {/* Timeline Nodes */}
-      <div className="relative border-l-2 border-blue-200 ml-4 pl-6 space-y-6">
-        {path?.nodes.map((node, index) => (
-          <div key={node.id} className="relative group">
-            {/* Step marker */}
-            <div className="absolute -left-[35px] top-1.5 w-6 h-6 rounded-full bg-blue-900 text-white flex items-center justify-center text-xs font-bold ring-4 ring-white">
-              {index + 1}
-            </div>
+  // Use active items from Zustand store if present to reflect interactive state
+  const activeItems = storeItems && storeItems.length > 0 ? storeItems : data.items;
+  const activeProgress = storeProgress || data.overallProgress;
 
-            <Card className="border-slate-200 hover:border-blue-400 transition-all shadow-sm">
-              <CardHeader className="pb-3">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <Badge variant="gov" className="text-[10px]">
-                    {node.competencyAddressed}
-                  </Badge>
-                  <span className="text-xs text-slate-500 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {node.estimatedHours} {t("hours")}
-                  </span>
-                </div>
-                <CardTitle className="text-base font-bold text-slate-900 mt-1">
-                  {node.resource.title}
-                </CardTitle>
-                <CardDescription className="text-xs">
-                  {node.recommendedReason}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-500">
-                    Source: <strong className="text-slate-700">{node.resource.source === "igot_karmayogi" ? "iGOT Karmayogi" : "MoSPI"}</strong>
-                  </span>
-                  <Badge
-                    variant={node.status === "completed" ? "success" : node.status === "in_progress" ? "warning" : "secondary"}
-                    className="text-[10px]"
-                  >
-                    {t(`status.${node.status === "in_progress" ? "inProgress" : node.status === "completed" ? "completed" : "notStarted"}`)}
-                  </Badge>
-                </div>
+  return (
+    <div className="space-y-8 max-w-4xl mx-auto animate-in fade-in-50 duration-200 pb-12">
+      {/* 1. Page Header */}
+      <LearningPathHeader
+        learnerName={data.learnerName}
+        role={data.role}
+        cadre={data.cadre}
+        department={data.department}
+      />
 
-                {node.status === "in_progress" && (
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-[10px] text-slate-500">
-                      <span>Module Progress</span>
-                      <span>{node.progress}%</span>
-                    </div>
-                    <Progress value={node.progress} indicatorClassName="bg-amber-500" />
-                  </div>
-                )}
+      {/* 2. Visual NOW -> NEXT -> LATER Stepper Journey */}
+      <JourneyRoadmap items={activeItems} />
 
-                <div className="pt-2 flex justify-end">
-                  <Button size="sm" className="bg-[#0B2545] hover:bg-[#134074] text-white text-xs gap-1.5">
-                    <PlayCircle className="w-3.5 h-3.5" />
-                    <span>{node.status === "in_progress" ? t("continueCourse") : t("startCourse")}</span>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        ))}
+      {/* 3. Personalized Path Summary (Overall Progress & Metrics) */}
+      <LearningPathSummary
+        overallProgress={activeProgress}
+        stats={data.stats}
+      />
+
+      {/* 3. 5-Stage Cadre Competency Intelligence Lifecycle Tracker */}
+      <CadreCompetencyTracker stages={data.competencyLoopStages} />
+
+      {/* 4. Why this learning order AI Insight Panel */}
+      <WhyOrderInsight whyThisOrder={data.whyThisOrder} />
+
+      {/* 5. NOW / NEXT / LATER Vertical Progression Timeline */}
+      <LearningTimeline items={activeItems} />
+
+      {/* 6. Bottom Navigation Bar */}
+      <div className="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span className="text-xs text-slate-600">
+          Want to browse individual modules or review competency gaps?
+        </span>
+        <div className="flex items-center gap-3">
+          <Link href={`/${locale}/learner/competency`}>
+            <Button variant="outline" className="text-xs font-semibold bg-white border-slate-300">
+              <ArrowLeft className="w-3.5 h-3.5 mr-1" />
+              <span>Back to My Competency</span>
+            </Button>
+          </Link>
+          <Link href={`/${locale}/learner/recommendations`}>
+            <Button className="bg-[#0B2545] hover:bg-[#134074] text-white text-xs font-semibold flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+              <span>Recommended Learning</span>
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

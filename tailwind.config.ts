@@ -79,7 +79,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        hindi: ["var(--font-hindi)", "Noto Sans Devanagari", "sans-serif"],
+        devanagari: ["var(--font-devanagari)", "Noto Sans Devanagari", "var(--font-sans)", "sans-serif"],
+        hindi: ["var(--font-devanagari)", "var(--font-hindi)", "Noto Sans Devanagari", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

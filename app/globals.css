@@ -70,8 +70,23 @@
   * {
     @apply border-border;
   }
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  [lang="hi"], [lang="hi"] body, .font-devanagari {
+    font-family: var(--font-devanagari), "Noto Sans Devanagari", system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-700 ring-offset-2;
   }
 }
