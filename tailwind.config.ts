@@ -81,6 +81,7 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
         devanagari: ["var(--font-devanagari)", "Noto Sans Devanagari", "var(--font-sans)", "sans-serif"],
         hindi: ["var(--font-devanagari)", "var(--font-hindi)", "Noto Sans Devanagari", "sans-serif"],
+        telugu: ["var(--font-telugu)", "Noto Sans Telugu", "Gautami", "Vani", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

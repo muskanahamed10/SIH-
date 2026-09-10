@@ -88,6 +88,13 @@
     overflow-wrap: break-word;
   }
 
+  [lang="te"], [lang="te"] body, .font-telugu {
+    font-family: var(--font-telugu), "Noto Sans Telugu", "Gautami", "Vani", system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
   :focus-visible {
     @apply outline-none ring-2 ring-primary-700 ring-offset-2;
   }

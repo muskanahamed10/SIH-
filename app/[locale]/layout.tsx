@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Devanagari } from "next/font/google";
+import { Inter, Noto_Sans_Devanagari, Noto_Sans_Telugu } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, unstable_setRequestLocale } from "next-intl/server";
 import { ReactQueryProvider } from "@/components/providers/query-provider";
@@ -15,6 +15,13 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari", "latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-devanagari",
+  display: "swap",
+});
+
+const notoSansTelugu = Noto_Sans_Telugu({
+  subsets: ["telugu", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-telugu",
   display: "swap",
 });
 
@@ -34,12 +41,13 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   const isHindi = locale === "hi";
+  const isTelugu = locale === "te";
 
   return (
-    <html lang={locale} dir="ltr" className={`${inter.variable} ${notoSansDevanagari.variable}`}>
+    <html lang={locale} dir="ltr" className={`${inter.variable} ${notoSansDevanagari.variable} ${notoSansTelugu.variable}`}>
       <body
         className={`min-h-screen bg-slate-50 text-slate-900 flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900 ${
-          isHindi ? "font-devanagari" : "font-sans"
+          isTelugu ? "font-telugu" : isHindi ? "font-devanagari" : "font-sans"
         }`}
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
