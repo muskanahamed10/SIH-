@@ -1,19 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { igotAdapter } from "@/lib/adapters/igot-adapter";
+import { mockRecommendationsData } from "@/mocks/data/recommendations";
+
+const BACKEND_URL = process.env.BACKEND_API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const competencyId = searchParams.get("competencyId") || undefined;
-  const priority = searchParams.get("priority") || undefined;
-  const type = searchParams.get("type") || undefined;
-  const sortBy = (searchParams.get("sortBy") as "recommended" | "duration" | "gap") || "recommended";
+  const queryString = searchParams.toString();
 
-  const data = await igotAdapter.getLearningResources({
-    competencyId,
-    priority,
-    type,
-    sortBy,
-  });
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/learner/recommendations?${queryString}`, {
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return NextResponse.json(data);
+    }
+  } catch (err) {
+    console.warn("Backend unavailable, using fallback mock data:", err);
+  }
 
-  return NextResponse.json(data);
+  return NextResponse.json(mockRecommendationsData);
 }
