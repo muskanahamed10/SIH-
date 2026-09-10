@@ -38,68 +38,28 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       role="group"
       aria-label="Language selector"
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-lg",
-        "border border-blue-900/80 bg-blue-950/60 text-white transition-all shadow-2xs backdrop-blur-xs select-none",
+        "inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-lg",
+        "border border-blue-500/60 bg-blue-950/90 text-white transition-all shadow-2xs backdrop-blur-xs select-none",
         className
       )}
     >
-      <Languages className="w-3.5 h-3.5 text-amber-300 shrink-0" aria-hidden="true" />
-      <div className="flex items-center gap-1 text-[11px] sm:text-xs">
-        {/* English */}
-        <button
-          type="button"
-          onClick={() => switchLocale("en")}
-          data-testid="language-btn-en"
-          aria-pressed={currentLocale === "en"}
-          title="Switch to English"
-          className={cn(
-            "transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 rounded px-1",
-            currentLocale === "en"
-              ? "text-amber-300 font-extrabold underline decoration-amber-400 decoration-2 underline-offset-2"
-              : "text-blue-200/80 hover:text-white font-medium"
-          )}
-        >
+      <Languages className="w-3.5 h-3.5 text-amber-300 shrink-0 ml-0.5" aria-hidden="true" />
+      <select
+        value={currentLocale}
+        onChange={(e) => switchLocale(e.target.value as "en" | "hi" | "te")}
+        aria-label="Language options"
+        className="bg-transparent text-white font-bold text-[11px] sm:text-xs border-none outline-none cursor-pointer focus:ring-0 px-1 py-1"
+      >
+        <option value="hi" className="bg-[#0B2545] text-white font-devanagari">
+          हिन्दी (Hindi)
+        </option>
+        <option value="te" className="bg-[#0B2545] text-white font-telugu">
+          తెలుగు (Telugu)
+        </option>
+        <option value="en" className="bg-[#0B2545] text-white">
           English
-        </button>
-
-        <span className="text-blue-400/50 text-[10px]" aria-hidden="true">|</span>
-
-        {/* Hindi */}
-        <button
-          type="button"
-          onClick={() => switchLocale("hi")}
-          data-testid="language-btn-hi"
-          aria-pressed={currentLocale === "hi"}
-          title="हिन्दी में बदलें (Switch to Hindi)"
-          className={cn(
-            "transition-colors font-devanagari focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 rounded px-1",
-            currentLocale === "hi"
-              ? "text-amber-300 font-extrabold underline decoration-amber-400 decoration-2 underline-offset-2"
-              : "text-blue-200/80 hover:text-white font-medium"
-          )}
-        >
-          हिन्दी
-        </button>
-
-        <span className="text-blue-400/50 text-[10px]" aria-hidden="true">|</span>
-
-        {/* Telugu */}
-        <button
-          type="button"
-          onClick={() => switchLocale("te")}
-          data-testid="language-btn-te"
-          aria-pressed={currentLocale === "te"}
-          title="తెలుగులోకి మార్చండి (Switch to Telugu)"
-          className={cn(
-            "transition-colors font-telugu focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 rounded px-1",
-            currentLocale === "te"
-              ? "text-amber-300 font-extrabold underline decoration-amber-400 decoration-2 underline-offset-2"
-              : "text-blue-200/80 hover:text-white font-medium"
-          )}
-        >
-          తెలుగు
-        </button>
-      </div>
+        </option>
+      </select>
     </div>
   );
 }

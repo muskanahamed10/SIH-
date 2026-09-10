@@ -62,19 +62,19 @@ export default async function HomePage({
           </div>
         </section>
 
-        {/* Subtle Entry Point: Build Your Competency Profile with 3 Compact Steps */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-10">
-          <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-[#0B2545] rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-blue-700/60 flex flex-col lg:flex-row items-center justify-between gap-6 min-h-[160px]">
+        {/* Clean Entry Point: Build Your Competency Profile with 3 Compact Steps (No awkward overlap) */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 text-slate-900 shadow-lg border-2 border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-6 min-h-[160px]">
             <div className="space-y-4 max-w-2xl w-full">
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/30">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-950 text-xs font-bold uppercase tracking-wider border border-amber-300">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
                   <span>{t("calloutBadge")}</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
                   {t("calloutTitle")}
                 </h2>
-                <p className="text-xs sm:text-sm text-blue-100/80 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {t("calloutDesc")}
                 </p>
               </div>
@@ -82,35 +82,35 @@ export default async function HomePage({
               {/* 3 Compact Steps Sequence */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                 {/* Step 01 */}
-                <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-blue-900/40 border border-blue-500/30">
-                  <span className="text-amber-400 font-extrabold text-xs tracking-wider px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">
+                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-blue-950 font-extrabold text-xs tracking-wider px-2 py-0.5 rounded bg-blue-100 border border-blue-200">
                     {t("steps.step1Num")}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-white truncate">{t("steps.step1Title")}</p>
-                    <p className="text-[10px] text-blue-200/70 truncate">{t("steps.step1Desc")}</p>
+                    <p className="text-xs font-bold text-slate-900 truncate">{t("steps.step1Title")}</p>
+                    <p className="text-[10px] text-slate-500 truncate">{t("steps.step1Desc")}</p>
                   </div>
                 </div>
 
                 {/* Step 02 */}
-                <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-blue-900/40 border border-blue-500/30">
-                  <span className="text-amber-400 font-extrabold text-xs tracking-wider px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">
+                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-blue-950 font-extrabold text-xs tracking-wider px-2 py-0.5 rounded bg-blue-100 border border-blue-200">
                     {t("steps.step2Num")}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-white truncate">{t("steps.step2Title")}</p>
-                    <p className="text-[10px] text-blue-200/70 truncate">{t("steps.step2Desc")}</p>
+                    <p className="text-xs font-bold text-slate-900 truncate">{t("steps.step2Title")}</p>
+                    <p className="text-[10px] text-slate-500 truncate">{t("steps.step2Desc")}</p>
                   </div>
                 </div>
 
                 {/* Step 03 */}
-                <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-blue-900/40 border border-blue-500/30">
-                  <span className="text-amber-400 font-extrabold text-xs tracking-wider px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">
+                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-blue-950 font-extrabold text-xs tracking-wider px-2 py-0.5 rounded bg-blue-100 border border-blue-200">
                     {t("steps.step3Num")}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-white truncate">{t("steps.step3Title")}</p>
-                    <p className="text-[10px] text-blue-200/70 truncate">{t("steps.step3Desc")}</p>
+                    <p className="text-xs font-bold text-slate-900 truncate">{t("steps.step3Title")}</p>
+                    <p className="text-[10px] text-slate-500 truncate">{t("steps.step3Desc")}</p>
                   </div>
                 </div>
               </div>
@@ -118,13 +118,13 @@ export default async function HomePage({
 
             {/* Clear Callout CTA: Start Baseline Assessment */}
             <div className="shrink-0 w-full lg:w-auto flex flex-col items-center lg:items-end gap-2">
-              <Button asChild size="lg" className="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-6 py-3 shadow-md gap-2 h-12 text-sm sm:text-base">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-6 py-3 shadow-md gap-2 h-12 text-sm sm:text-base">
                 <Link href={`/${locale}/learner/assessment`}>
                   <span>{t("startBaselineCta")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <span className="text-[11px] text-blue-200/70 font-medium text-center lg:text-right">
+              <span className="text-[11px] text-slate-500 font-medium text-center lg:text-right">
                 15 mins • Official Subordinate Statistical Service benchmark
               </span>
             </div>
