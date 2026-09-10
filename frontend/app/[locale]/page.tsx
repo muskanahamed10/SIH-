@@ -53,7 +53,7 @@ export default async function HomePage({
               {/* SECONDARY CTA: Browse Learning Catalog (Solid, constant contrast with zero fading on click) */}
               <Link
                 href={`/${locale}/explore`}
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm sm:text-base font-semibold border-2 border-slate-300 hover:border-white active:border-white bg-slate-900 hover:bg-slate-800 active:bg-slate-900 text-white hover:text-white active:text-white shadow-md gap-2.5 h-11 px-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 select-none"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm sm:text-base font-semibold border-2 border-slate-300 hover:border-white active:border-slate-300 bg-slate-900 hover:bg-slate-900 active:bg-slate-900 text-white hover:text-white active:text-white shadow-md gap-2.5 h-11 px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 select-none opacity-100 hover:opacity-100 active:opacity-100 cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-amber-300 shrink-0" />
                 <span className="text-white">{t("browseCatalogCta")}</span>

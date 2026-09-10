@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { UserCircle, Shield, ArrowLeftRight, LogOut, ChevronDown } from "lucide-react";
+import { UserCircle, Shield, ArrowLeftRight, LogOut, ChevronDown, LogIn } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export function UserNav() {
@@ -13,9 +13,21 @@ export function UserNav() {
   const pathname = usePathname();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const isAdmin = pathname.includes("/admin");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("sih_user_signed_in");
+      if (saved === "false") {
+        setIsLoggedIn(false);
+      }
+    } catch {
+      // localStorage may not be accessible in some environments
+    }
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -26,6 +38,37 @@ export function UserNav() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+    setIsOpen(false);
+    try {
+      localStorage.setItem("sih_user_signed_in", "false");
+    } catch {}
+    router.push(`/${locale}`);
+  };
+
+  const handleSignIn = () => {
+    setIsLoggedIn(true);
+    try {
+      localStorage.setItem("sih_user_signed_in", "true");
+    } catch {}
+    router.push(`/${locale}/learner`);
+  };
+
+  if (!isLoggedIn) {
+    return (
+      <button
+        type="button"
+        onClick={handleSignIn}
+        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0B2545] hover:bg-[#134074] text-white text-xs font-bold shadow-xs border border-blue-600 transition-colors focus-visible:ring-2 focus-visible:ring-amber-400 cursor-pointer"
+        title="Sign in as Statistical Officer"
+      >
+        <LogIn className="w-3.5 h-3.5 text-amber-300" />
+        <span>Sign In</span>
+      </button>
+    );
+  }
 
   return (
     <div className="relative" ref={menuRef}>
@@ -85,10 +128,7 @@ export function UserNav() {
           <div className="border-t border-slate-100 pt-1">
             <button
               type="button"
-              onClick={() => {
-                setIsOpen(false);
-                router.push(`/${locale}`);
-              }}
+              onClick={handleSignOut}
               className="w-full flex items-center gap-2 px-4 py-2 text-xs text-rose-600 hover:bg-rose-50 transition cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
