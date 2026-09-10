@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./language-switcher";
 import { NotificationDropdown } from "./notification-dropdown";
 import { UserNav } from "./user-nav";
-import { ShieldCheck, UserCheck, Menu, Search } from "lucide-react";
+import { ShieldCheck, UserCheck, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void }) {
@@ -41,8 +41,8 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
         </div>
       </div>
 
-      {/* Main navigation header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      {/* Main navigation header - full width so brand is anchored to the corner */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
           {(isLearner || isAdmin) && onToggleSidebar && (
             <button
@@ -85,86 +85,6 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
               </p>
             </div>
           </Link>
-        </div>
-
-        {/* Primary Karmayogi Learner Navigation Tabs (Desktop/Tablet) */}
-        {isLearner && (
-          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 mx-2 lg:mx-4 overflow-x-auto" aria-label="Primary Navigation">
-            {[
-              {
-                href: `/${locale}/learner`,
-                label: navT("home"),
-                exact: true,
-                aliases: [`/${locale}/learner/dashboard`, `/${locale}/home`, `/${locale}`],
-              },
-              {
-                href: `/${locale}/learning`,
-                label: navT("myLearning"),
-              },
-              {
-                href: `/${locale}/learner/competency`,
-                label: navT("myCompetency"),
-                aliases: [`/${locale}/learner/competency`],
-              },
-              {
-                href: `/${locale}/learner/learning-path`,
-                label: navT("learningPath"),
-              },
-              {
-                href: `/${locale}/learner/assessments`,
-                label: navT("assessments"),
-                aliases: [`/${locale}/learner/assessment`],
-              },
-              {
-                href: `/${locale}/learner/recommendations`,
-                label: navT("recommendations"),
-              },
-              {
-                href: `/${locale}/explore`,
-                label: navT("explore"),
-              },
-              {
-                href: `/${locale}/achievement`,
-                label: navT("achievement"),
-              },
-            ].map((item) => {
-              const isExactMatch =
-                item.exact &&
-                (pathname === item.href || item.aliases?.includes(pathname));
-              const isSubpathMatch =
-                !item.exact &&
-                (pathname.startsWith(item.href) ||
-                  item.aliases?.some((a) => pathname.startsWith(a)));
-              const isActive = isExactMatch || isSubpathMatch;
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-2.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors ${
-                    isActive
-                      ? "bg-[#0B2545] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-        )}
-
-        {/* Karmayogi Search Input (Desktop/Tablet) */}
-        <div className="hidden 2xl:flex items-center flex-1 max-w-[200px] mx-2">
-          <div className="relative w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
-            <input
-              type="search"
-              placeholder={t("searchPlaceholder")}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-full border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 transition"
-              aria-label={t("searchAriaLabel")}
-            />
-          </div>
         </div>
 
         {/* Portal view switcher & User profile menu */}
