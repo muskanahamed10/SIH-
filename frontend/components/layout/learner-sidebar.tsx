@@ -153,7 +153,9 @@ export function LearnerSidebar({
           {navItems.map((item) => {
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;
-            const isAliasMatch = item.aliases?.some((a) => pathname.startsWith(a.split("#")[0]));
+            const isAliasMatch = item.aliases?.some((a) =>
+              item.exact ? pathname === a : pathname.startsWith(a.split("#")[0])
+            );
             const isSubpathMatch = !item.exact && pathname.startsWith(item.href);
             const isActive = isExactMatch || isAliasMatch || isSubpathMatch;
 
