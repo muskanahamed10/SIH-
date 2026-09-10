@@ -28,6 +28,16 @@ from typing import List, Dict, Any
 
 
 # ── Gap Score ─────────────────────────────────────────────────────────────────
+def compute_gap_score(required: int, current: float) -> float:
+    """
+    Prompt 2 exact formula:
+        compute_gap_score(required, current) = max(0.0, (required - current) / required)
+    """
+    if required <= 0:
+        return 0.0
+    return max(0.0, (required - current) / required)
+
+
 def compute_gap(target: float, actual: float, weight: float = 1.0) -> float:
     """
     Compute the weighted competency gap for a single competency.
@@ -163,6 +173,15 @@ def rank_recommendations(
 
     ranked = []
     for m in modules:
+        # ── Hard Constraints Filter (Prompt 2 spec) ───────────────────────
+        # Discard if already completed, inactive, or access restricted
+        if m.get("status") and m.get("status") != "active":
+            continue
+        if m.get("is_completed"):
+            continue
+        if m.get("prerequisite_met") is False:
+            continue
+
         cid = m.get("competency_id", "")
         gap_info = gap_map.get(cid, {})
         raw_gap = gap_info.get("gap_score", 0.0)

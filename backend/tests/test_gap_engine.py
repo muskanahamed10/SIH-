@@ -20,9 +20,25 @@ from services.api.engine.gap_engine import (
 
 
 # ── compute_gap ───────────────────────────────────────────────────────────────
+from services.api.engine.gap_engine import compute_gap_score
+
+class TestComputeGapScoreDeterministic:
+    @pytest.mark.parametrize("required,current,expected", [
+        (5, 5.0, 0.0),
+        (5, 0.0, 1.0),
+        (4, 2.0, 0.5),
+        (5, 2.5, 0.5),
+        (5, 6.0, 0.0),   # exceeded target
+        (0, 2.0, 0.0),   # division by zero guard
+    ])
+    def test_compute_gap_score_deterministic(self, required, current, expected):
+        assert compute_gap_score(required, current) == pytest.approx(expected, abs=1e-4)
+
+
 class TestComputeGap:
     def test_standard_gap(self):
         assert compute_gap(4.0, 2.1, 1.0) == 1.9
+
 
     def test_no_gap_when_at_target(self):
         assert compute_gap(4.0, 4.0, 1.0) == 0.0

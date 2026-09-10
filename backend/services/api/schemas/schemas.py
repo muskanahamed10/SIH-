@@ -68,6 +68,45 @@ class CompetencyResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+# ── Shared Group B Contracts (Prompt 2 Specification) ─────────────────────────
+from typing import Literal, Tuple
+
+class GapVector(BaseModel):
+    competency_id: str
+    competency_name: str
+    competency_name_hi: Optional[str] = ""
+    required_level: int        # 1-5
+    current_level: float       # 0.0-5.0
+    gap_score: float           # 0.0-1.0
+    priority: Literal['critical', 'high', 'medium', 'low']
+
+
+class RecommendationResult(BaseModel):
+    resource_id: str
+    igot_id: Optional[str] = None
+    title: str
+    title_hi: Optional[str] = ""
+    score: float               # 0.0-1.0 composite
+    reason_code: str
+    competency_ids: List[str]
+    duration_hours: float
+    language: Literal['en', 'hi', 'both'] = 'en'
+    thumbnail_url: Optional[str] = None
+
+
+class MCQQuestionContract(BaseModel):
+    question_id: str
+    stem: str
+    stem_hi: Optional[str] = ""
+    options: Tuple[str, str, str, str]
+    options_hi: Optional[Tuple[str, str, str, str]] = None
+    correct_option: Literal[0, 1, 2, 3]
+    explanation: str
+    competency_id: str
+    difficulty: Literal['easy', 'medium', 'hard']
+    source_locator: Optional[str] = ""
+
+
 # ── Gap Analysis ──────────────────────────────────────────────────────────────
 class GapScoreItem(BaseModel):
     competency_id: str
