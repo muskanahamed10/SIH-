@@ -4,13 +4,14 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { UserCircle, Shield, ArrowLeftRight, LogOut, ChevronDown } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function UserNav() {
   const t = useTranslations("common.user");
   const navT = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -84,8 +85,11 @@ export function UserNav() {
           <div className="border-t border-slate-100 pt-1">
             <button
               type="button"
-              onClick={() => setIsOpen(false)}
-              className="w-full flex items-center gap-2 px-4 py-2 text-xs text-rose-600 hover:bg-rose-50 transition"
+              onClick={() => {
+                setIsOpen(false);
+                router.push(`/${locale}`);
+              }}
+              className="w-full flex items-center gap-2 px-4 py-2 text-xs text-rose-600 hover:bg-rose-50 transition cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
               <span>{t("signOut")}</span>
