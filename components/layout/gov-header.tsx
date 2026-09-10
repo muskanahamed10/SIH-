@@ -55,15 +55,22 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
             </button>
           )}
 
-          {/* MoSPI Official Brand Block (Preserved Position) */}
+          {/* Official Brand Block with Karmayogi Emblem */}
           <Link
             href={`/${locale}`}
             className="flex items-center gap-2 sm:gap-2.5 group focus-visible:ring-2 focus-visible:ring-blue-800 rounded-lg py-1 px-0.5 sm:px-1 transition shrink-0"
-            aria-label="MoSPI - India's Official Statistical System"
+            aria-label="Official Statistical System - Mission Karmayogi"
           >
-            {/* MoSPI Emblem / Badge */}
-            <div className="h-10 w-10 rounded-lg bg-[#0B2545] flex flex-col items-center justify-center text-amber-400 font-black shadow-xs border border-blue-950 shrink-0">
-              <span className="text-[12px] tracking-wider leading-none">MoSPI</span>
+            {/* Official Karmayogi Emblem Logo (at MoSPI place) */}
+            <div className="h-10 w-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-slate-200/90 bg-white shadow-xs">
+              <Image
+                src="/assets/images/karmayogi-emblem.png"
+                alt="Mission Karmayogi Bharat"
+                width={40}
+                height={40}
+                priority
+                className="h-full w-full object-cover"
+              />
             </div>
 
             {/* Platform Identity & Tagline */}
@@ -73,37 +80,11 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
                   {t("appTitle")}
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate mt-0.5 max-w-[140px] sm:max-w-[220px]">
+              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate mt-0.5 max-w-[180px] sm:max-w-[260px]">
                 {t("appSubtitle")}
               </p>
             </div>
           </Link>
-
-          {/* Official Partner Divider */}
-          <div className="hidden min-[360px]:block h-8 w-px bg-slate-200 shrink-0 mx-0.5 sm:mx-1" aria-hidden="true" />
-
-          {/* Official iGOT Karmayogi Partner Logo (Resized gracefully on mobile) */}
-          <div
-            className="hidden min-[360px]:flex items-center gap-1.5 py-1 px-0.5 sm:px-1 transition shrink-0"
-            title="iGOT Karmayogi - National Programme for Civil Services Capacity Building"
-            aria-label="iGOT Karmayogi Partner Platform"
-          >
-            <Image
-              src="/assets/images/igot-karmayogi-logo.svg"
-              alt="iGOT Karmayogi Logo"
-              width={140}
-              height={35}
-              priority
-              className="h-7 sm:h-9 w-auto max-w-[85px] xs:max-w-[105px] sm:max-w-[135px] lg:max-w-[145px] object-contain shrink-0"
-            />
-          </div>
-
-          {/* Compact Partner Pill for ultra-narrow screens (<360px) */}
-          <div className="flex min-[360px]:hidden items-center shrink-0">
-            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#0B2545] text-amber-400 border border-blue-950 shadow-2xs" title="iGOT Karmayogi Partner">
-              iGOT
-            </span>
-          </div>
         </div>
 
         {/* Primary Karmayogi Learner Navigation Tabs (Desktop/Tablet) */}
