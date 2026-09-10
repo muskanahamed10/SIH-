@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# iGOT Karmayogi — AI Competency Gap Platform (SIH 2026)
 
-## Getting Started
+Official Statistical System AI-Enabled Learning & Competency Gap Platform.
 
-First, run the development server:
+## 📁 Repository Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+├── frontend/                  # Next.js 14 Web Application
+│   ├── app/                   # App Router ([locale], api/learner, etc.)
+│   ├── components/            # UI components (charts, radar, learner, admin)
+│   ├── lib/                   # API layer, adapters, utils
+│   ├── messages/              # Multilingual translations (en, hi, te)
+│   ├── types/                 # TypeScript domain contracts
+│   └── package.json           # Frontend dependencies & scripts
+│
+└── backend/                   # FastAPI Server & Data Layer
+    ├── services/api/          # Core API, endpoints, security, models, schemas
+    │   ├── api/v1/endpoints/  # REST endpoints (auth, competencies, gaps, learner)
+    │   ├── models/            # SQLAlchemy 12 Canonical Entities
+    │   ├── engine/            # SIH 6-Factor Competency Gap Formula Engine
+    │   └── adapters/          # iGOT Platform mock adapter
+    ├── tests/                 # 95 Comprehensive unit & integration tests
+    ├── requirements.txt       # Python dependencies
+    └── setup_supabase.py      # Cloud Supabase PostgreSQL database initializer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Backend Setup (FastAPI & Supabase)
 
-## Learn More
+```bash
+cd backend
+pip install -r requirements.txt
 
-To learn more about Next.js, take a look at the following resources:
+# Run all 95 automated tests
+python -m pytest tests/ -v
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start the API server
+uvicorn services.api.main:app --reload --port 8000
+```
+- **API Documentation**: http://localhost:8000/docs
+- **Health Check**: http://localhost:8000/health
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Frontend Setup (Next.js 14)
 
-## Deploy on Vercel
+```bash
+cd frontend
+npm install
+npm run dev
+```
+- **Web Application**: http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ☁️ Cloud Database (Supabase)
+
+The backend connects directly to **Supabase PostgreSQL**.
+To initialize tables and demo data in Supabase:
+```bash
+cd backend
+python setup_supabase.py
+```
