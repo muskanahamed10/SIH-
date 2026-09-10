@@ -80,11 +80,11 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
           </Link>
 
           {/* Official Partner Divider */}
-          <div className="hidden min-[420px]:block h-8 w-px bg-slate-200 shrink-0 mx-0.5 lg:mx-1" aria-hidden="true" />
+          <div className="hidden min-[360px]:block h-8 w-px bg-slate-200 shrink-0 mx-0.5 sm:mx-1" aria-hidden="true" />
 
-          {/* Official iGOT Karmayogi Partner Logo */}
+          {/* Official iGOT Karmayogi Partner Logo (Resized gracefully on mobile) */}
           <div
-            className="hidden min-[420px]:flex items-center gap-1.5 py-1 px-1 transition shrink-0"
+            className="hidden min-[360px]:flex items-center gap-1.5 py-1 px-0.5 sm:px-1 transition shrink-0"
             title="iGOT Karmayogi - National Programme for Civil Services Capacity Building"
             aria-label="iGOT Karmayogi Partner Platform"
           >
@@ -94,8 +94,15 @@ export function GovHeader({ onToggleSidebar }: { onToggleSidebar?: () => void })
               width={140}
               height={35}
               priority
-              className="h-8 sm:h-9 w-auto max-w-[100px] sm:max-w-[135px] lg:max-w-[145px] object-contain shrink-0"
+              className="h-7 sm:h-9 w-auto max-w-[85px] xs:max-w-[105px] sm:max-w-[135px] lg:max-w-[145px] object-contain shrink-0"
             />
+          </div>
+
+          {/* Compact Partner Pill for ultra-narrow screens (<360px) */}
+          <div className="flex min-[360px]:hidden items-center shrink-0">
+            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#0B2545] text-amber-400 border border-blue-950 shadow-2xs" title="iGOT Karmayogi Partner">
+              iGOT
+            </span>
           </div>
         </div>
 

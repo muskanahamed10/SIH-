@@ -1141,6 +1141,7 @@
     "analytics": "Platform Analytics"
   },
   "home": {
+    "heroEyebrow": "AI-ENABLED COMPETENCY INTELLIGENCE",
     "heroBadge": "Competency Intelligence Layer",
     "heroTitle": "Official Cadre Learning & Competency Intelligence",
     "heroSubtitle": "Empowering statistical officers with role-calibrated competency diagnostics, GapRadar analytics, and explainable iGOT Karmayogi learning paths.",
@@ -1149,7 +1150,21 @@
     "calloutBadge": "AI Competency Intelligence",
     "calloutTitle": "Build Your Competency Profile",
     "calloutDesc": "Take a short baseline assessment to understand your competency gaps and receive personalized learning recommendations.",
-    "discoverCompetencyCta": "Discover My Competency",
+    "startBaselineCta": "Start Baseline Assessment",
+    "discoverCompetencyCta": "Explore My Competency",
+    "steps": {
+      "step1Num": "01",
+      "step1Title": "Baseline Assessment",
+      "step1Desc": "Role-calibrated diagnostic",
+      "step2Num": "02",
+      "step2Title": "GapRadar Analysis",
+      "step2Desc": "Skill deficit mapping",
+      "step3Num": "03",
+      "step3Title": "Personalized Learning Path",
+      "step3Desc": "iGOT milestone journey"
+    },
+    "igotAttribution": "Powered by competency intelligence + iGOT Karmayogi learning pathways",
+    "catalogDemoBadge": "Demo catalog • iGOT integration ready",
     "learnerCard": {
       "badge": "Official Cadre Member (M1)",
       "cadreRoles": "SSO / JSO / AD",
