@@ -11,7 +11,7 @@ export function ResultsNextActions() {
   const locale = useLocale();
 
   return (
-    <Card className="p-7 sm:p-8 shadow-md border-blue-200 bg-linear-to-r from-blue-900 via-indigo-950 to-[#0B2545] text-white space-y-5">
+    <Card className="p-7 sm:p-8 shadow-md border-2 border-blue-700/60 bg-[#0B2545] bg-gradient-to-r from-[#0B2545] via-[#134074] to-[#0A2240] text-white space-y-5 rounded-2xl">
       <div className="space-y-2 max-w-2xl">
         <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-400/30">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />

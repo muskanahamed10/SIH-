@@ -268,7 +268,7 @@ export default function CompetencyReassessmentPage() {
             </div>
 
             {/* Before vs After Progression Card */}
-            <div className="p-5 rounded-2xl bg-linear-to-r from-blue-50/80 to-emerald-50/80 border border-emerald-200 max-w-md mx-auto grid grid-cols-2 gap-4">
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50/80 to-emerald-50/80 border border-emerald-200 max-w-md mx-auto grid grid-cols-2 gap-4">
               <div className="space-y-1 border-r border-slate-200 pr-4">
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
                   Initial Baseline

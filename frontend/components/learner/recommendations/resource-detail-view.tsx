@@ -122,7 +122,7 @@ export function ResourceDetailView({ resource }: ResourceDetailViewProps) {
         </div>
 
         {/* Why this resource was recommended (AI Decision Support) */}
-        <div className="p-5 rounded-2xl bg-linear-to-r from-blue-50/70 to-indigo-50/50 border border-blue-200/80 space-y-3">
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 border border-blue-200/80 space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-amber-500" aria-hidden="true" />
             <h2 className="text-sm font-extrabold text-blue-950 tracking-tight">

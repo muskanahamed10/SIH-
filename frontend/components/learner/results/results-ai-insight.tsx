@@ -21,7 +21,7 @@ export function ResultsAiInsight({ insight }: ResultsAiInsightProps) {
   const locale = useLocale();
 
   return (
-    <Card className="p-6 sm:p-7 shadow-xs border-blue-200 bg-linear-to-br from-blue-50/70 via-indigo-50/40 to-slate-50 relative overflow-hidden space-y-4">
+    <Card className="p-6 sm:p-7 shadow-xs border-blue-200 bg-gradient-to-br from-blue-50/70 via-indigo-50/40 to-slate-50 relative overflow-hidden space-y-4">
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">

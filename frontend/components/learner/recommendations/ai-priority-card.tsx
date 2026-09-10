@@ -23,7 +23,7 @@ export function AiPriorityCard({ priorityArea }: AiPriorityCardProps) {
   const locale = useLocale();
 
   return (
-    <Card className="p-6 sm:p-7 shadow-xs border-amber-200/90 bg-linear-to-r from-amber-50/70 via-orange-50/40 to-amber-50/60 relative overflow-hidden space-y-4">
+    <Card className="p-6 sm:p-7 shadow-xs border-amber-200/90 bg-gradient-to-r from-amber-50/70 via-orange-50/40 to-amber-50/60 relative overflow-hidden space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="h-9 w-9 rounded-xl bg-[#0B2545] flex items-center justify-center text-amber-400 shrink-0 shadow-xs">
