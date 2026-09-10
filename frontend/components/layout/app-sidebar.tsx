@@ -98,11 +98,18 @@ export function AppSidebar({
   // Learner Navigation Configuration (Karmayogi Integrated)
   const learnerNavItems: NavItemConfig[] = [
     {
-      href: `/${locale}/learner`,
+      href: `/${locale}`,
       labelKey: "home",
       icon: Home,
       exact: true,
-      aliases: [`/${locale}/home`, `/${locale}`],
+      aliases: [`/${locale}/home`],
+    },
+    {
+      href: `/${locale}/learner`,
+      labelKey: "dashboard",
+      icon: LayoutDashboard,
+      exact: true,
+      aliases: [`/${locale}/learner/dashboard`],
     },
     {
       href: `/${locale}/explore`,
@@ -120,18 +127,6 @@ export function AppSidebar({
       icon: Brain,
       badge: "AI Core",
       aliases: [`/${locale}/learner/competency`],
-    },
-    {
-      href: `/${locale}/achievement`,
-      labelKey: "achievement",
-      icon: Award,
-    },
-    {
-      href: `/${locale}/learner/dashboard`,
-      labelKey: "dashboard",
-      icon: LayoutDashboard,
-      exact: true,
-      aliases: [`/${locale}/learner/dashboard`],
     },
     {
       href: `/${locale}/learner/assessments`,
@@ -168,6 +163,11 @@ export function AppSidebar({
       href: `/${locale}/learner/profile`,
       labelKey: "profile",
       icon: UserCircle,
+    },
+    {
+      href: `/${locale}/achievement`,
+      labelKey: "achievement",
+      icon: Award,
     },
   ];
 

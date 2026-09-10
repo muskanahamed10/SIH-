@@ -18,6 +18,8 @@ import {
   X,
   Brain,
   UploadCloud,
+  Home,
+  Search,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -40,11 +42,23 @@ export function LearnerSidebar({
 
   const navItems = [
     {
+      href: `/${locale}`,
+      label: t("home"),
+      icon: Home,
+      exact: true,
+      aliases: [`/${locale}/home`],
+    },
+    {
       href: `/${locale}/learner`,
       label: t("dashboard"),
       icon: LayoutDashboard,
       exact: true,
-      aliases: [`/${locale}/learner/dashboard`, `/${locale}/home`, `/${locale}`],
+      aliases: [`/${locale}/learner/dashboard`],
+    },
+    {
+      href: `/${locale}/explore`,
+      label: t("explore"),
+      icon: Search,
     },
     {
       href: `/${locale}/learning`,
